@@ -6,3 +6,11 @@
 ```
 ### Задание №1
 Написать 5 автотестов для проверки авторизации
+
+Tests:
+
+titleIsPresentTest
+successfulAuthorizationTest
+loginIsTooShortTest
+loginIsTooLongTest
+replaceAllIncorrectSymbolsTest
