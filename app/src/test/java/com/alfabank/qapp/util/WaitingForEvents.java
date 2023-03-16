@@ -1,7 +1,5 @@
 package com.alfabank.qapp.util;
 
-import com.alfabank.qapp.page.BasePage;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,10 +16,11 @@ public class WaitingForEvents {
     private static final int WAIT_TIMEOUT_SECONDS = 30;
     private WebDriver driver;
     private WebDriverWait wait;
-//    protected static final Logger log = LoggerFactory.getLogger(WaitingForEvents.class);
+    protected static final Logger log = LoggerFactory.getLogger(WaitingForEvents.class);
 
     public WaitingForEvents(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
     }
 
     public boolean isElementPresent(MobileElement element) {
@@ -30,7 +29,7 @@ public class WaitingForEvents {
             wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
             isPresent = true;
         } catch (WebDriverException e) {
-//            log.info(e.getMessage());
+            log.info(e.getMessage());
         }
         return isPresent;
     }

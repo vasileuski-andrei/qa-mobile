@@ -3,11 +3,11 @@ package com.alfabank.qapp.test;
 import static org.junit.Assert.assertTrue;
 
 import com.alfabank.qapp.driver.DriverSingleton;
-import com.alfabank.qapp.page.BasePage;
 import com.alfabank.qapp.page.LoginPage;
 import com.alfabank.qapp.util.ValidationInputData;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
@@ -22,9 +22,9 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
     public static final String DEV_NAME = "samsung SM-J730F";
-    private static final String APK_PATH = "/app/src/androidTest/resources/apk/app.apk";
+    private static final String APK_PATH = "src/test/resources/apk/app.apk";
     private static final String URL = "http://127.0.0.1:4723/wd/hub";
-    public static final String USERNAME = "Username";
+    public static final String USERNAME = "Login";
     public static final String PASSWORD = "Password";
     public static final String TOO_SHORT_DATA = ValidationInputData.getRandomString("ABCDEFHIJKLMNabcdefghijkuvwxyz\\s.,/'_-", 2);
     public static final String TOO_LONG_DATA = ValidationInputData.getRandomString("ABCDEFHIJKLMNabcdefghijkuvwxyz\\s.,/'_-", 54);
@@ -39,6 +39,7 @@ public class BaseTest {
 
         try {
             driver = DriverSingleton.getDriver(URL, desiredCapabilities);
+            System.out.println("DRIVER " + driver);
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         } catch (MalformedURLException e) {
             log.info(e.getMessage());
@@ -54,4 +55,5 @@ public class BaseTest {
 
         return file.getAbsolutePath();
     }
+
 }
