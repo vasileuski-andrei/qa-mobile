@@ -18,8 +18,8 @@ public class LoginPage extends BasePage {
     @AndroidFindBy(id = "com.alfabank.qapp:id/btnConfirm")
     private MobileElement buttonConfirm;
 
-    public boolean isTitlePresent() {
-        return waitingForEvents.isElementPresent(title);
+    public String getTitleText() {
+        return waitingForEvents.waitForAppearanceElementAndGetIt(title).getText();
     }
 
     public LoginPage inputCredentials(String username, String password) {

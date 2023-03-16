@@ -10,10 +10,11 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void titleIsPresentTest() {
+        String expected = "Вход в Alfa-Test";
 
-        boolean actualResult = loginPage.isTitlePresent();
+        String actual = loginPage.getTitleText();
 
-        assertTrue("Title isn't present in the login page", actualResult);
+        assertEquals("Title " + expected + " isn't present in the login page", expected, actual);
 
     }
 

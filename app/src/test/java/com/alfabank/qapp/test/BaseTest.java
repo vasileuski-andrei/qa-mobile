@@ -39,7 +39,6 @@ public class BaseTest {
 
         try {
             driver = DriverSingleton.getDriver(URL, desiredCapabilities);
-            System.out.println("DRIVER " + driver);
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         } catch (MalformedURLException e) {
             log.info(e.getMessage());

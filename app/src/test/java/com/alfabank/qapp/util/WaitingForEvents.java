@@ -2,6 +2,7 @@ package com.alfabank.qapp.util;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -36,6 +37,10 @@ public class WaitingForEvents {
 
     public void waitForAppearanceElement(MobileElement element) {
         wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public WebElement waitForAppearanceElementAndGetIt(MobileElement element) {
+        return wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
     }
 
 }
