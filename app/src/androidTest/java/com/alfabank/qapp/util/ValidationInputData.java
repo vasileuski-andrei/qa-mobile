@@ -1,7 +1,5 @@
 package com.alfabank.qapp.util;
 
-import com.alfabank.qapp.page.BasePage;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,7 +7,7 @@ import java.util.Random;
 
 public class ValidationInputData {
 
-    protected static final Logger log = LoggerFactory.getLogger(BasePage.class);
+    protected static final Logger log = LoggerFactory.getLogger(ValidationInputData.class);
 
     private ValidationInputData() {
     }

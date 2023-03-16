@@ -18,7 +18,7 @@ public class WaitingForEvents {
     private static final int WAIT_TIMEOUT_SECONDS = 30;
     private WebDriver driver;
     private WebDriverWait wait;
-    protected static final Logger log = LoggerFactory.getLogger(WaitingForEvents.class);
+//    protected static final Logger log = LoggerFactory.getLogger(WaitingForEvents.class);
 
     public WaitingForEvents(WebDriver driver) {
         this.driver = driver;
@@ -30,7 +30,7 @@ public class WaitingForEvents {
             wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
             isPresent = true;
         } catch (WebDriverException e) {
-            log.info(e.getMessage());
+//            log.info(e.getMessage());
         }
         return isPresent;
     }
