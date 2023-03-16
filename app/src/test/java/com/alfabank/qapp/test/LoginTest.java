@@ -42,6 +42,16 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    public void clickLoginButtonWithoutCredentialsTest() {
+
+        String actual = loginPage
+                .clickLoginButtonWithIncorrectCredentials();
+
+        assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
+
+    }
+
+    @Test
     public void titleIsPresentTest() {
 
         String expected = "Вход в Alfa-Test";
