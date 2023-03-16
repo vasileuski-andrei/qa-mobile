@@ -32,6 +32,10 @@ public class WaitingForEvents {
         return wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitForAppearanceElementAndClickIt(MobileElement element) {
+        wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element)).click();
+    }
+
     public boolean isElementPresent(MobileElement element) {
         boolean isPresent = false;
         try {

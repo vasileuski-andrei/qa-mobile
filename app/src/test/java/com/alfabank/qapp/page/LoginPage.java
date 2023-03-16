@@ -18,6 +18,9 @@ public class LoginPage extends BasePage {
     @AndroidFindBy(id = "com.alfabank.qapp:id/btnConfirm")
     private MobileElement buttonConfirm;
 
+    @AndroidFindBy(id = "com.alfabank.qapp:id/tvError")
+    private MobileElement errorMessage;
+
     public String getTitleText() {
         return waitingForEvents.waitForAppearanceElementAndGetIt(title).getText();
     }
@@ -29,8 +32,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public boolean inputLogin(String username) {
-        if (username.length() < 3) return false;
+    public void inputLogin(String username) {
         String checkedUsername = username;
         waitingForEvents.waitForAppearanceElement(loginField);
         boolean isUsernameValid = ValidationInputData.areSymbolsValid(username);
@@ -39,12 +41,9 @@ public class LoginPage extends BasePage {
             checkedUsername = ValidationInputData.replaceAllInvalidSymbols(username);
         }
 
-        if (checkedUsername.length() > 50) return false;
-
         loginField.sendKeys(checkedUsername);
         log.info("Username was successfully entered");
 
-        return true;
     }
 
     public boolean inputPassword(String password) {
@@ -64,15 +63,16 @@ public class LoginPage extends BasePage {
     }
 
     public ProfilePage clickLoginButton() {
-        waitingForEvents.waitForAppearanceElement(buttonConfirm);
-        buttonConfirm.click();
+        waitingForEvents.waitForAppearanceElementAndClickIt(buttonConfirm);
         log.info("ProfilePage was opened");
 
         return new ProfilePage();
     }
 
-    public String replaceAllIncorrectSymbols(String data) {
-        return ValidationInputData.replaceAllInvalidSymbols(data);
+    public String clickLoginButtonWithIncorrectCredentials() {
+        waitingForEvents.waitForAppearanceElementAndClickIt(buttonConfirm);
+
+        return waitingForEvents.waitForAppearanceElementAndGetIt(errorMessage).getText();
     }
 
 }

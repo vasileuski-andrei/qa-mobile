@@ -7,7 +7,6 @@ import com.alfabank.qapp.page.LoginPage;
 import com.alfabank.qapp.util.ValidationInputData;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
@@ -26,9 +25,9 @@ public class BaseTest {
     private static final String URL = "http://127.0.0.1:4723/wd/hub";
     public static final String USERNAME = "Login";
     public static final String PASSWORD = "Password";
-    public static final String TOO_SHORT_DATA = ValidationInputData.getRandomString("ABCDEFHIJKLMNabcdefghijkuvwxyz\\s.,/'_-", 2);
-    public static final String TOO_LONG_DATA = ValidationInputData.getRandomString("ABCDEFHIJKLMNabcdefghijkuvwxyz\\s.,/'_-", 54);
-    public static final String INCORRECT_DATA = ValidationInputData.getRandomString("!@#$%^&*()1234567890", 25);
+    public static final String INVALID_CRED_ERROR_MESSAGE = "Введены неверные данные";
+    public static final String LONG_VALID_DATA = ValidationInputData.getRandomString("ABCDEFHIJKLMNabcdefghijkuvwxyz\\s.,/'_-", 54);
+    public static final String INVALID_DATA = ValidationInputData.getRandomString("!@#$%^&*()1234567890", 25);
     protected static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @Before
