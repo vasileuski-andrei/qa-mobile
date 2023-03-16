@@ -8,17 +8,6 @@ import org.junit.Test;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void titleIsPresentTest() {
-
-        String expected = "Вход в Alfa-Test";
-
-        String actual = loginPage.getTitleText();
-
-        assertEquals("Title " + expected + " isn't present in the login page", expected, actual);
-
-    }
-
-    @Test
     public void successfulAuthorizationTest() {
 
         boolean actual = loginPage
@@ -38,6 +27,28 @@ public class LoginTest extends BaseTest {
                 .clickLoginButtonWithIncorrectCredentials();
 
         assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
+
+    }
+
+    @Test
+    public void passwordIsTooLongTest() {
+
+        String actual = loginPage
+                .inputCredentials(USERNAME, LONG_VALID_DATA)
+                .clickLoginButtonWithIncorrectCredentials();
+
+        assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
+
+    }
+
+    @Test
+    public void titleIsPresentTest() {
+
+        String expected = "Вход в Alfa-Test";
+
+        String actual = loginPage.getTitleText();
+
+        assertEquals("Title " + expected + " isn't present in the login page", expected, actual);
 
     }
 

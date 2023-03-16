@@ -33,33 +33,17 @@ public class LoginPage extends BasePage {
     }
 
     public void inputLogin(String username) {
-        String checkedUsername = username;
         waitingForEvents.waitForAppearanceElement(loginField);
-        boolean isUsernameValid = ValidationInputData.areSymbolsValid(username);
-
-        if (!isUsernameValid) {
-            checkedUsername = ValidationInputData.replaceAllInvalidSymbols(username);
-        }
-
-        loginField.sendKeys(checkedUsername);
+        loginField.sendKeys(username);
         log.info("Username was successfully entered");
 
     }
 
-    public boolean inputPassword(String password) {
-        if (password.length() < 3) return false;
-        String checkedPassword = password;
+    public void inputPassword(String password) {
         waitingForEvents.waitForAppearanceElement(passwordField);
-        boolean isPasswordValid = ValidationInputData.areSymbolsValid(password);
-
-        if (!isPasswordValid) {
-            checkedPassword = ValidationInputData.replaceAllInvalidSymbols(password);
-        }
-
         passwordField.sendKeys(password);
         log.info("Password was successfully entered");
 
-        return true;
     }
 
     public ProfilePage clickLoginButton() {
