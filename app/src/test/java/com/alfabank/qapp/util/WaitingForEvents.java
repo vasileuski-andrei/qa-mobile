@@ -24,6 +24,14 @@ public class WaitingForEvents {
         wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
     }
 
+    public void waitForAppearanceElement(MobileElement element) {
+        wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public WebElement waitForAppearanceElementAndGetIt(MobileElement element) {
+        return wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
+    }
+
     public boolean isElementPresent(MobileElement element) {
         boolean isPresent = false;
         try {
@@ -33,14 +41,6 @@ public class WaitingForEvents {
             log.info(e.getMessage());
         }
         return isPresent;
-    }
-
-    public void waitForAppearanceElement(MobileElement element) {
-        wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public WebElement waitForAppearanceElementAndGetIt(MobileElement element) {
-        return wait.withTimeout(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(element));
     }
 
 }

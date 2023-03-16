@@ -10,6 +10,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void titleIsPresentTest() {
+
         String expected = "Вход в Alfa-Test";
 
         String actual = loginPage.getTitleText();
@@ -21,12 +22,12 @@ public class LoginTest extends BaseTest {
     @Test
     public void successfulAuthorizationTest() {
 
-        boolean actualResult = loginPage
+        boolean actual = loginPage
                 .inputCredentials(USERNAME, PASSWORD)
                 .clickLoginButton()
                 .isProfilePageOpened();
 
-        assertTrue("Profile Page wasn't opened", actualResult);
+        assertTrue("Profile Page wasn't opened", actual);
 
     }
 
