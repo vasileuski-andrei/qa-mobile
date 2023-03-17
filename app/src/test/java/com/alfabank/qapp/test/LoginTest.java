@@ -22,7 +22,8 @@ public class LoginTest extends BaseTest {
     public void successfulAuthorizationTest() {
 
         boolean actual = loginPage
-                .inputCredentials(USERNAME, PASSWORD)
+                .inputLogin(USERNAME)
+                .inputPassword(PASSWORD)
                 .clickLoginButton()
                 .isProfilePageOpened();
 
@@ -34,7 +35,8 @@ public class LoginTest extends BaseTest {
     public void inputValidTooLongLoginTest() {
 
         String actual = loginPage
-                .inputCredentials(LONG_VALID_DATA, PASSWORD)
+                .inputLogin(LONG_VALID_DATA)
+                .inputPassword(PASSWORD)
                 .clickLoginButtonWithIncorrectCredentials();
 
         assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
@@ -45,7 +47,8 @@ public class LoginTest extends BaseTest {
     public void inputInvalidLoginTest() {
 
         String actual = loginPage
-                .inputCredentials(INVALID_DATA, PASSWORD)
+                .inputLogin(INVALID_DATA)
+                .inputPassword(PASSWORD)
                 .clickLoginButtonWithIncorrectCredentials();
 
         assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
@@ -56,7 +59,8 @@ public class LoginTest extends BaseTest {
     public void inputValidTooLongPasswordTest() {
 
         String actual = loginPage
-                .inputCredentials(USERNAME, LONG_VALID_DATA)
+                .inputLogin(USERNAME)
+                .inputPassword(LONG_VALID_DATA)
                 .clickLoginButtonWithIncorrectCredentials();
 
         assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);

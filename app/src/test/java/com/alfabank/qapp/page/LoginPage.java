@@ -24,13 +24,6 @@ public class LoginPage extends BasePage {
         return waitingForEvents.waitForAppearanceElementAndGetIt(title).getText();
     }
 
-    public LoginPage inputCredentials(String username, String password) {
-        inputLogin(username);
-        inputPassword(password);
-
-        return this;
-    }
-
     public LoginPage inputLogin(String username) {
         waitingForEvents.waitForAppearanceElement(loginField);
         loginField.sendKeys(username);
@@ -39,11 +32,12 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void inputPassword(String password) {
+    public LoginPage inputPassword(String password) {
         waitingForEvents.waitForAppearanceElement(passwordField);
         passwordField.sendKeys(password);
         log.info("Password was successfully entered");
 
+        return this;
     }
 
     public ProfilePage clickLoginButton() {
