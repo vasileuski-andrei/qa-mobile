@@ -1,6 +1,5 @@
 package com.alfabank.qapp.page;
 
-import com.alfabank.qapp.util.ValidationInputData;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;;
 
@@ -32,11 +31,12 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void inputLogin(String username) {
+    public LoginPage inputLogin(String username) {
         waitingForEvents.waitForAppearanceElement(loginField);
         loginField.sendKeys(username);
         log.info("Username was successfully entered");
 
+        return this;
     }
 
     public void inputPassword(String password) {

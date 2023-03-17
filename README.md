@@ -9,8 +9,10 @@
 
 Tests:
 
-titleIsPresentTest
-successfulAuthorizationTest
-loginIsTooShortTest
-loginIsTooLongTest
-replaceAllIncorrectSymbolsTest
+titleIsPresentTest; 
+successfulAuthorizationTest; 
+inputValidTooLongLoginTest; 
+inputInvalidLoginTest; 
+inputValidTooLongPasswordTest; 
+inputLoginWithoutPasswordTest;
+clickLoginButtonWithoutCredentialsTest

@@ -8,6 +8,17 @@ import org.junit.Test;
 public class LoginTest extends BaseTest {
 
     @Test
+    public void titleIsPresentTest() {
+
+        String expected = "Вход в Alfa-Test";
+
+        String actual = loginPage.getTitleText();
+
+        assertEquals("Title " + expected + " isn't present in the login page", expected, actual);
+
+    }
+
+    @Test
     public void successfulAuthorizationTest() {
 
         boolean actual = loginPage
@@ -20,7 +31,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void loginIsTooLongTest() {
+    public void inputValidTooLongLoginTest() {
 
         String actual = loginPage
                 .inputCredentials(LONG_VALID_DATA, PASSWORD)
@@ -31,10 +42,32 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void passwordIsTooLongTest() {
+    public void inputInvalidLoginTest() {
+
+        String actual = loginPage
+                .inputCredentials(INVALID_DATA, PASSWORD)
+                .clickLoginButtonWithIncorrectCredentials();
+
+        assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
+
+    }
+
+    @Test
+    public void inputValidTooLongPasswordTest() {
 
         String actual = loginPage
                 .inputCredentials(USERNAME, LONG_VALID_DATA)
+                .clickLoginButtonWithIncorrectCredentials();
+
+        assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
+
+    }
+
+    @Test
+    public void inputLoginWithoutPasswordTest() {
+
+        String actual = loginPage
+                .inputLogin(USERNAME)
                 .clickLoginButtonWithIncorrectCredentials();
 
         assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
@@ -48,17 +81,6 @@ public class LoginTest extends BaseTest {
                 .clickLoginButtonWithIncorrectCredentials();
 
         assertEquals(INVALID_CRED_ERROR_MESSAGE, actual);
-
-    }
-
-    @Test
-    public void titleIsPresentTest() {
-
-        String expected = "Вход в Alfa-Test";
-
-        String actual = loginPage.getTitleText();
-
-        assertEquals("Title " + expected + " isn't present in the login page", expected, actual);
 
     }
 

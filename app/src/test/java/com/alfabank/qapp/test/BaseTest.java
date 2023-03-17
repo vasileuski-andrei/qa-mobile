@@ -27,7 +27,7 @@ public class BaseTest {
     public static final String PASSWORD = "Password";
     public static final String INVALID_CRED_ERROR_MESSAGE = "Введены неверные данные";
     public static final String LONG_VALID_DATA = ValidationInputData.getRandomString("ABCDEFHIJKLMNabcdefghijkuvwxyz\\s.,/'_-", 54);
-    public static final String INVALID_DATA = ValidationInputData.getRandomString("!@#$%^&*()1234567890", 25);
+    public static final String INVALID_DATA = ValidationInputData.getRandomString("!@#$%^&*()1234567890", 15);
     protected static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @Before
