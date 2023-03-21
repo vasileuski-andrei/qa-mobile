@@ -12,5 +12,4 @@ public class ProfilePage extends BasePage {
         return waitingForEvents.isElementPresent(confirmText);
     }
 
-
 }

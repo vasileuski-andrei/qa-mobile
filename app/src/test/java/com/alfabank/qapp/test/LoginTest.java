@@ -1,9 +1,9 @@
 package com.alfabank.qapp.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LoginTest extends BaseTest {
 
@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest {
 
         String actual = loginPage.getTitleText();
 
-        assertEquals("Title " + expected + " isn't present in the login page", expected, actual);
+        assertEquals(expected, actual, "Title " + expected + " isn't present in the login page");
 
     }
 
@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
                 .clickLoginButton()
                 .isProfilePageOpened();
 
-        assertTrue("Profile Page wasn't opened", actual);
+        assertTrue(actual, "Profile Page wasn't opened");
 
     }
 

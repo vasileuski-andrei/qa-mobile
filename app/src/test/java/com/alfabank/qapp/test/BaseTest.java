@@ -1,12 +1,12 @@
 package com.alfabank.qapp.test;
 
-import static org.junit.Assert.assertTrue;
-
 import com.alfabank.qapp.driver.DriverSingleton;
 import com.alfabank.qapp.page.LoginPage;
 import com.alfabank.qapp.util.ValidationInputData;
 
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
@@ -14,13 +14,13 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
+
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
-    public static final String DEV_NAME = "samsung SM-J730F";
+    public static final String DEV_NAME = "Pixel 2 API 24";
     private static final String APK_PATH = "src/test/resources/apk/app.apk";
     private static final String URL = "http://127.0.0.1:4723/wd/hub";
     public static final String USERNAME = "Login";
@@ -29,16 +29,17 @@ public class BaseTest {
     public static final String LONG_VALID_DATA = ValidationInputData.getRandomString("ABCDEFHIJKLMNabcdefghijkuvwxyz\\s.,/'_-", 54);
     public static final String INVALID_DATA = ValidationInputData.getRandomString("!@#$%^&*()1234567890", 15);
     protected static final Logger log = LoggerFactory.getLogger(BaseTest.class);
+    DesiredCapabilities desiredCapabilities = null;
 
-    @Before
+    @BeforeEach
     public void setup() {
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEV_NAME);
         desiredCapabilities.setCapability(MobileCapabilityType.APP,getAbsolutePath(APK_PATH));
 
         try {
             driver = DriverSingleton.getDriver(URL, desiredCapabilities);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         } catch (MalformedURLException e) {
             log.info(e.getMessage());
         }
@@ -49,9 +50,14 @@ public class BaseTest {
 
     private String getAbsolutePath(String filePath) {
         File file = new File(filePath);
-        assertTrue(filePath + " not found", file.exists());
+        Assertions.assertTrue(file.exists(), filePath + " not found");
 
         return file.getAbsolutePath();
+    }
+
+    @AfterEach
+    public void close() {
+        DriverSingleton.closeDriver();
     }
 
 }
